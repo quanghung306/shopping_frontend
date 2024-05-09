@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Sidebars from "./layouts/sidebar/Sidebars";
+import HomePage from "./page/HomePage";
+import HelpPage from "./page/HelpPage";
+import JoinusPage from "./page/JoinusPage";
+import SignInPage from "./page/SignInPage";
+import NotFoundPage from "./page/NotFoundPage";
+import Footer from "./layouts/banner/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Sidebars />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/help" element={<HelpPage />} />
+        <Route path="/join-us" element={<JoinusPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
