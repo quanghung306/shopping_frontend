@@ -1,0 +1,13 @@
+.Container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+.card{
+    width: 18rem;
+    padding: 20px;
+    gap:50px
+    
+}

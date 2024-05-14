@@ -5,7 +5,7 @@ import "./Sidebar.css"
 export const Sidebars = () => {
   return (
     <div class="sidebar">
-      <div class="sidebar-header">
+      <div class="sidebar-logo">
         <a href="#">
           <img src={logo} />
         </a>
@@ -34,6 +34,8 @@ export const Sidebars = () => {
         </li>
       </ul>
     </div>
+    
+    
   );
 };
 export default Sidebars;

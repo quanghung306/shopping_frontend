@@ -1,0 +1,18 @@
+.productid {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.img {
+    display: block;
+    unicode-bidi: isolate;
+    width: 535px;
+    max-width: 535px;
+    height: 669px;
+}
+
+
+.product-name {
+    width: 456px;
+}
