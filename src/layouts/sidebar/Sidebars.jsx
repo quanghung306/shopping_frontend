@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css"
+import { Button } from "@mui/material";
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+
 
 export const Sidebars = () => {
   return (
@@ -31,6 +34,11 @@ export const Sidebars = () => {
           <Link to="/sign-in" className="nav-link">
             Sign In
           </Link>
+        </li>
+        <li>
+        <Link to="/store" className="nav-link">
+        <Button  endIcon={<ShoppingBagOutlinedIcon />}> </Button>
+        </Link>
         </li>
       </ul>
     </div>

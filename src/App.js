@@ -5,6 +5,7 @@ import HomePage from "./page/HomePage";
 import HelpPage from "./page/HelpPage";
 import JoinusPage from "./page/JoinusPage";
 import SignInPage from "./page/SignInPage";
+import StorePage from "./page/StorePage"
 import NotFoundPage from "./page/NotFoundPage";
 import Footer from "./layouts/banner/Footer";
 import MenuSidebar from "./layouts/sidebar/MenuSidebar";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/help" element={<HelpPage />} />
         <Route path="/join-us" element={<JoinusPage />} />
         <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/store" element={<StorePage/>} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/sp/:productId" element={<Dynamic/>}/>
       </Routes>
