@@ -8,26 +8,30 @@
     top: 0;
     font-size: 20px;
     z-index: 9;
-    background-color: #fff;
+    background-color: #F5F5F5;
 }
+.sidebar a{
+    padding-left: 50px;
+} 
 
 .sidebar img {
-    height: 10%;
-    width: 10%;
+    width: 20%;
 }
 
 .sidebar li {
     display: inline-block;
     list-style: none;
     margin-right: 2px;
+    
 }
 
-.sidebar li a {
+.sidebar li a{
     display: inline-block;
     text-decoration: none;
     color: #111;
     font-size: 12px;
     font-weight: 500;
+    padding-left: 0px ;
 }
 
 .sidebar ul {
