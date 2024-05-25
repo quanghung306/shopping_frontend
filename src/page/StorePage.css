@@ -1,0 +1,18 @@
+
+.storepage{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px;
+}
+
+.product-details{
+    display: flex;
+    padding: 50px ;
+}
+.Summary{
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    border-left: 4px solid black ;
+
+}

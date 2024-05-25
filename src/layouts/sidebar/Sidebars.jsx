@@ -8,11 +8,9 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 export const Sidebars = () => {
   return (
     <div class="sidebar">
-      <div class="sidebar-logo">
-        <a href="#">
+        <Link to='/'>
           <img src={logo} />
-        </a>
-      </div>
+        </Link>
 
       <ul>
         <li>
@@ -36,9 +34,7 @@ export const Sidebars = () => {
           </Link>
         </li>
         <li>
-        <Link to="/store" className="nav-link">
-        <Button  endIcon={<ShoppingBagOutlinedIcon />}> </Button>
-        </Link>
+        
         </li>
       </ul>
     </div>
