@@ -8,13 +8,13 @@ const Footer = () => {
         <div className="container">
           <div className="text-muted">
             <ul>
-              Resources
+              <li>Resources</li>
               <li>Find A Store</li>
               <li>Become A Member</li>
               <li>Send Us Feedback</li>
             </ul>
             <ul>
-              Help
+              <li>Help</li>
               <li>Get Help</li>
               <li>Order Status</li>
               <li>Delivery</li>
@@ -23,7 +23,7 @@ const Footer = () => {
               <li>Contact Us</li>
             </ul>
             <ul>
-            About Glasgow
+              <li>About Glasgow</li>
               <li>About Glasgow</li>
               <li>News</li>
               <li>Careers</li>
@@ -33,11 +33,10 @@ const Footer = () => {
           </div>
         </div>
         <div>
-        <span className="text-muted">© 2024 Glasgow, Inc. All rights reserved </span>
+          <span className="text-muted">© 2024 Glasgow, Inc. All rights reserved</span>
         </div>
       </footer>
     </>
-    
   );
 };
 
