@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./Dynamic.css";
 import Rating from "@mui/material/Rating";
 import axios from "axios";
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { addToCart } from "../stores/slice/cartSlice";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,13 +14,15 @@ const Dynamic = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const handleAddToCart = (product) => {
-     dispatch(addToCart(product));
+    dispatch(addToCart(product));
   };
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/products/${productId}`);
+        const response = await axios.get(
+          `http://localhost:3001/products/${productId}`
+        );
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,7 +33,7 @@ const Dynamic = () => {
 
     fetchProduct();
   }, [productId]);
-  
+
   return (
     <>
       {loading ? (
@@ -49,11 +51,22 @@ const Dynamic = () => {
                 <li>Colour Shown: White/Sail/Legend Pink</li>
                 <li>Style: FN5215-161</li>
               </ul>
+              <p >
+                {new Intl.NumberFormat("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                  minimumFractionDigits: 0,
+                }).format(product.price)}
+              </p>
             </div>
             <div className="btmua">
-            <Button variant="contained" endIcon={<ShoppingBagIcon />} onClick={() => handleAddToCart(product)}>
-              Add to cart
-            </Button>
+              <Button
+                variant="contained"
+                endIcon={<ShoppingBagIcon />}
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to cart
+              </Button>
               <Rating name="customized-10" defaultValue={2} max={5} />
             </div>
           </div>

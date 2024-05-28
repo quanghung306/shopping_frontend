@@ -8,10 +8,10 @@ const MenuSidebar = () => {
   return (
     <div className="Menusidebar">
       <ul>
-        <li>New & Featured</li>
-        <li>MEN</li>
-        <li>WOMEN</li>
-        <li>SALE</li>
+        <li><Button variant="text">New & Featured</Button></li>
+        <li><Button variant="text">MEN</Button></li>
+        <li><Button variant="text">WOMEN</Button></li>
+        <li><Button variant="text">SALE</Button></li>
         <input className="se" type="text" placeholder="Search"></input>
         <li>
           <Link to="/store" className="nav-link">
