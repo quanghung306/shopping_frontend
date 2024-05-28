@@ -19,5 +19,25 @@
       "email": "hunghunghung630@gmail.com",
       "password": "123"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Product 1",
+      "description": "Description for product 1",
+      "image": "path_to_image1.png"
+    },
+    {
+      "id": 2,
+      "title": "Product 2",
+      "description": "Description for product 2",
+      "image": "path_to_image2.png"
+    },
+    {
+      "id": 3,
+      "title": "Product 3",
+      "description": "Description for product 3",
+      "image": "path_to_image3.png"
+    }
   ]
 }
