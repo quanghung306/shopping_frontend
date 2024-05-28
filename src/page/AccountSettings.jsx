@@ -1,12 +1,9 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -16,26 +13,23 @@ import axios from 'axios';
 
 const defaultTheme = createTheme();
 
-const SignInPage = ({ setIsLoggedIn, setCurrentUser }) => {
+const AccountSettings = ({ user }) => {
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
-
     try {
-      const response = await axios.get(`http://localhost:3001/users?email=${email}&password=${password}`);
-      const users = response.data;
-
-      if (users.length > 0) {
-        alert('Login successful');
-        setIsLoggedIn(true);
-        setCurrentUser(users[0]);
-        navigate('/'); 
+      const response = await axios.put(`http://localhost:3001/users/${user.id}`, {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        console.log('Account updated successfully');
+        navigate('/dashboard');
       } else {
-       alert('Invalid email or password');
+        console.error('Failed to update account');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -58,7 +52,7 @@ const SignInPage = ({ setIsLoggedIn, setCurrentUser }) => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Account Settings
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -69,6 +63,8 @@ const SignInPage = ({ setIsLoggedIn, setCurrentUser }) => {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
             <TextField
@@ -80,23 +76,12 @@ const SignInPage = ({ setIsLoggedIn, setCurrentUser }) => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
+              Save Changes
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <RouterLink to="#" variant="body2">
-                  Forgot password?
-                </RouterLink>
-              </Grid>
-              <Grid item>
-                <RouterLink to="/sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </RouterLink>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
@@ -104,4 +89,4 @@ const SignInPage = ({ setIsLoggedIn, setCurrentUser }) => {
   );
 };
 
-export default SignInPage;
+export default AccountSettings;

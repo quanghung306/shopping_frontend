@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Container.css";
-import img from "../assets/n426a4ok.png";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const Container = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/products')
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
+
   return (
     <div className="Container">
-      <div className="card">
-        <Link to="/sp/sp1">
-          <img src={img} />
-        </Link>
-        <div>
-          <h5>Card title</h5>
-          <p>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-
-          <Button variant="contained" endIcon={<ShoppingBagIcon />}>
-            Thêm Vào Giỏ Hàng
-          </Button>
+      {products.map(product => (
+        <div className="card" key={product.id}>
+          <Link to={`/sp/${product.id}`}>
+            <img src={product.image} alt={product.title} />
+          </Link>
+          <div>
+            <h5>{product.title}</h5>
+            <p>{product.description}</p>
+            <Button variant="contained" endIcon={<ShoppingBagIcon />}>
+              Thêm Vào Giỏ Hàng
+            </Button>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
