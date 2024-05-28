@@ -14,24 +14,40 @@ import axios from "axios";
 import { IconButton, InputAdornment } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 const defaultTheme = createTheme();
+
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [CheckEmail, setCheckEmail] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
+
+    if (!isValidEmail(email)) {
+      setCheckEmail("Invalid email format. Please enter a valid email.");
+      return;
+    }
+
     const user = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
       email: email,
       password: data.get("password"),
     };
+
     try {
       const existingUsers = await axios.get(
         `http://localhost:3001/users?email=${email}`
@@ -69,9 +85,9 @@ const SignUpPage = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          {CheckEmail && (
+          {checkEmail && (
             <Typography component="p" variant="body2" color="error">
-              {CheckEmail}
+              {checkEmail}
             </Typography>
           )}
           <Box
