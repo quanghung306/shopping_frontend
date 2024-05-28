@@ -74,70 +74,70 @@
       "id": 7,
       "title": "Air Jordan 1 Low SE",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-low-se-shoes-hgcLbC (1)",
+      "image":"./src/assets/air-jordan-1-low-se-shoes-hgcLbC (1).png",
       "price": 3519000
     },
     {
       "id": 8,
       "title": "Air Jordan 1 Elevate Low",
       "description": "Women",
-      "image":"./src/assets/air-jordan-1-elevate-low-shoes-XlkVrM",
+      "image":"./src/assets/air-jordan-1-elevate-low-shoes-XlkVrM.png",
       "price": 3829000
     },
     {
       "id": 9,
       "title": "Air Jordan 1 Low",
       "description": "Women",
-      "image":"./src/assets/air-jordan-1-low-shoes-459b4T (1)",
+      "image":"./src/assets/air-jordan-1-low-shoes-459b4T (1).png",
       "price": 3239000
     },
     {
       "id": 10,
       "title": "Air Jordan 1 Low",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-low-shoes-lFCSjp",
+      "image":"./src/assets/air-jordan-1-low-shoes-lFCSjp.png",
       "price": 3239000
     },
     {
       "id": 11,
       "title": "Air Jordan 1 Low",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-low-shoes-ZHhKk2",
+      "image":"./src/assets/air-jordan-1-low-shoes-ZHhKk2.png",
       "price": 3239000
     },
     {
       "id": 12,
       "title": "Air Jordan 1 Low",
       "description": "Women",
-      "image":"./src/assets/air-jordan-1-low-shoes-459b4T (2)",
+      "image":"./src/assets/air-jordan-1-low-shoes-459b4T (2).png",
       "price": 3239000
     },
     {
       "id": 13,
       "title": "Air Jordan 1 Mid SE",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-mid-se-shoes-v8XHxD",
+      "image":"./src/assets/air-jordan-1-mid-se-shoes-v8XHxD.png",
       "price": 3959000
     },
     {
       "id": 14,
       "title": "Air Jordan 1 Low Method of Make",
       "description": "Women",
-      "image":"./src/assets/air-jordan-1-low-method-of-make-shoes-m6FCTq",
+      "image":"./src/assets/air-jordan-1-low-method-of-make-shoes-m6FCTq.png",
       "price": 3959000
     },
     {
       "id": 15,
       "title": "Air Jordan 1 Low",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-low-shoes-zTWr01",
+      "image":"./src/assets/air-jordan-1-low-shoes-zTWr01.png",
       "price": 3239000
     },
     {
       "id": 16,
       "title": "Air Jordan 1 Elevate Low",
       "description": "Men",
-      "image":"./src/assets/air-jordan-1-elevate-low-shoes-XlkVrM (1)",
+      "image":"./src/assets/air-jordan-1-elevate-low-shoes-XlkVrM.png",
       "price": 2929000
     }
   ]

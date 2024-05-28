@@ -18,12 +18,13 @@ const Container = () => {
       });
   }, []);
 
+
   return (
     <div className="Container">
-      {products.map(product => (
+      { products.map(product => (
         <div className="card" key={product.id}>
           <Link to={`/sp/${product.id}`}>
-            <img src={product.image} alt={product.title} />
+            <img src={`data:;base64,${product.image}`} alt={product.title} />
           </Link>
           <div>
             <h5>{product.title}</h5>

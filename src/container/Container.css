@@ -1,8 +1,9 @@
 .Container{
     display: grid;
-    gap: 50px;
+    gap: 10px;
     grid-template-columns: auto auto auto auto;
-    padding: 10px;
+    padding: 50px;
+    justify-content: space-between;
 }
 .card{
     width: 18rem;
