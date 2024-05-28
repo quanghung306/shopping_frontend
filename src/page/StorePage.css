@@ -1,7 +1,7 @@
 
 .storepage{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 40px;
 }
 
@@ -9,10 +9,23 @@
     display: flex;
     padding: 50px ;
 }
+.details{
+    width: 500px;
+}
 .Summary{
+    /* border-left: 4px solid black ; */
+    padding-left: 20px;
+}
+.Summary-item{
     display: flex;
+    width: 400px;
     flex-direction: column;
-    padding-left: 40px;
-    border-left: 4px solid black ;
+    padding: 50px ;
+}
 
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    border-bottom: 0.2px solid black ;
 }
