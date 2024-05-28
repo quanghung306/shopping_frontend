@@ -1,9 +1,16 @@
 .Container{
     display: grid;
+<<<<<<< HEAD
     gap: 10px;
     grid-template-columns: auto auto auto auto;
     padding: 50px;
     justify-content: space-between;
+=======
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    grid-template-columns: auto auto auto auto;
+>>>>>>> 4cdb3c3c3fb718b52b547e05275583be81ef84bc
 }
 .card{
     width: 18rem;

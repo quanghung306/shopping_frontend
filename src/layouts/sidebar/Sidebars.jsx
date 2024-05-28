@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
 import { Avatar } from "@mui/material";
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 export const Sidebars = ({ isLoggedIn, user }) => {
   return (
@@ -27,8 +26,8 @@ export const Sidebars = ({ isLoggedIn, user }) => {
           </Link>
         </li>
         <li>
-          {isLoggedIn ? (
-            <Link to="/account-settings" className="nav-link">
+          {isLoggedIn && user ? (
+            <Link to="/" className="nav-link">
               <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>
             </Link>
           ) : (

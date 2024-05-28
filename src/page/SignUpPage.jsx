@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -14,52 +11,62 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { IconButton, InputAdornment } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const defaultTheme = createTheme();
 
 const SignUpPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [checkEmail, setCheckEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const user = {
-        FirstName: data.get("firstName"),
-        LastName: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-      };
-  
-      try {
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const email = data.get("email");
+
+    if (!isValidEmail(email)) {
+      setCheckEmail("Invalid email format. Please enter a valid email.");
+      return;
+    }
+
+    const user = {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      email: email,
+      password: data.get("password"),
+    };
+
+    try {
+      const existingUsers = await axios.get(
+        `http://localhost:3001/users?email=${email}`
+      );
+      if (existingUsers.data.length > 0) {
+        setCheckEmail("Email already exists. Please use a different email.");
+      } else {
         const response = await axios.post("http://localhost:3001/users", user);
         if (response.status === 201) {
-          alert("User registered successfully\nYou will be redirected to the home page");
-          navigate("/");
+          navigate("/sign-in");
         } else {
-          alert("Failed to register user");
+          setCheckEmail("Failed to register user. Please try again.");
         }
-      } catch (error) {
-        alert("Error:", error);
       }
-    };
-  
+    } catch (error) {
+      setCheckEmail(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -78,6 +85,11 @@ const SignUpPage = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          {checkEmail && (
+            <Typography component="p" variant="body2" color="error">
+              {checkEmail}
+            </Typography>
+          )}
           <Box
             component="form"
             noValidate
@@ -122,19 +134,27 @@ const SignUpPage = () => {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleTogglePasswordVisibility}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <VisibilityIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -153,7 +173,6 @@ const SignUpPage = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
