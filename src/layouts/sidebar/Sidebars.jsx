@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
-import "./Sidebar.css"
-import { Button } from "@mui/material";
+import "./Sidebar.css";
+import { Avatar } from "@mui/material";
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
-
-export const Sidebars = () => {
+export const Sidebars = ({ isLoggedIn, user }) => {
   return (
-    <div class="sidebar">
-        <Link to='/'>
-          <img src={logo} />
-        </Link>
-
+    <div className="sidebar">
+      <Link to='/'>
+        <img src={logo} alt="Logo" />
+      </Link>
       <ul>
         <li>
           <Link to="/" className="nav-link">
@@ -29,17 +27,19 @@ export const Sidebars = () => {
           </Link>
         </li>
         <li>
-          <Link to="/sign-in" className="nav-link">
-            Sign In
-          </Link>
-        </li>
-        <li>
-        
+          {isLoggedIn ? (
+            <Link to="/account-settings" className="nav-link">
+              <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>
+            </Link>
+          ) : (
+            <Link to="/sign-in" className="nav-link">
+              Sign In
+            </Link>
+          )}
         </li>
       </ul>
     </div>
-    
-    
   );
 };
+
 export default Sidebars;
