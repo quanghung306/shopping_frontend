@@ -1,49 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./StorePage.css";
 import { Button } from '@mui/material';
-
-
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 const StorePage = () => {
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/products/${productId}`);
+        setProduct(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
+  
   return (
     <div className='storepage'>
     <div className='bag'>
         <h4>Bag</h4>
-        <div className='product-details'>
-          <img src='https://i.imgur.com/4YX6JXp.png' alt='img'></img>
-          <div className='details'>
-            <div className="item">
-            <h6>Product Name</h6>
-            <span>100000000₫</span>
-            {/* <span>{product.price * product.quantity}₫</span> */}
-            </div>
-            <p>Men's Shoes</p>
-            <p>Sail/Cream II/Limestone/Pacific Moss</p>
-            <div className="size">
-              <label>Size</label>
-              <select id="size"  >
-                <option value="46">46</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className='product-details'>
-          <img src='https://i.imgur.com/4YX6JXp.png' alt='img'></img>
-          <div className='details'>
-            <div className="item">
-            <h6>Product Name</h6>
-            <span>100000000₫</span>
-            {/* <span>{product.price * product.quantity}₫</span> */}
-            </div>
-            <p>Men's Shoes</p>
-            <p>Sail/Cream II/Limestone/Pacific Moss</p>
-            <div className="size">
-              <label>Size</label>
-              <select id="size"  >
-                <option value="46">46</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div className='product-details'>
           <img src='https://i.imgur.com/4YX6JXp.png' alt='img'></img>
           <div className='details'>
