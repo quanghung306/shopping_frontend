@@ -13,13 +13,12 @@ import Dynamic from "./page/Dynamic";
 import SignUpPage from "./page/SignUpPage";
 import { useState } from "react";
 import AccountSettings from "./page/AccountSettings";
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-
   return (
     <>
+   
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
       <MenuSidebar />
       <Routes>

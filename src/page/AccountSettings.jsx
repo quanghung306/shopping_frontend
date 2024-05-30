@@ -27,7 +27,7 @@ const AccountSettings = ({ user }) => {
       });
       if (response.status === 200) {
         console.log('Account updated successfully');
-        navigate('/dashboard');
+        navigate('/');
       } else {
         console.error('Failed to update account');
       }
