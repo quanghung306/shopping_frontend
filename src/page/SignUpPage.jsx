@@ -14,18 +14,14 @@ import axios from "axios";
 import { IconButton, InputAdornment } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-
 const defaultTheme = createTheme();
-
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [checkEmail, setCheckEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -35,7 +31,6 @@ const SignUpPage = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
-
     if (!isValidEmail(email)) {
       setCheckEmail("Invalid email format. Please enter a valid email.");
       return;

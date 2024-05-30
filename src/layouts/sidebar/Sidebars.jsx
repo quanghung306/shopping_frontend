@@ -1,12 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
-import { Avatar } from "@mui/material";
-
-export const Sidebars = ({ isLoggedIn, user }) => {
+import UserPopover from "../../page/UserPopover";
+const Sidebars = ({ isLoggedIn, user }) => {
   return (
     <div className="sidebar">
-      <Link to='/'>
+      <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
       <ul>
@@ -28,7 +28,9 @@ export const Sidebars = ({ isLoggedIn, user }) => {
         <li>
           {isLoggedIn && user ? (
             <Link to="/" className="nav-link">
-              <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>
+              {/* <span> Hi {user.LastName}</span>  */}
+              {/* <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar> */}
+              <UserPopover/>
             </Link>
           ) : (
             <Link to="/sign-in" className="nav-link">
