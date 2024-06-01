@@ -8,11 +8,11 @@ import SignInPage from "./page/SignInPage";
 import StorePage from "./page/StorePage";
 import NotFoundPage from "./page/NotFoundPage";
 import Footer from "./layouts/banner/Footer";
-import MenuSidebar from "./layouts/sidebar/MenuSidebar";
 import Dynamic from "./page/Dynamic";
 import SignUpPage from "./page/SignUpPage";
 import { useState } from "react";
 import AccountSettings from "./page/AccountSettings";
+import ProfilePage from "./page/ProfilePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
-      <MenuSidebar />
+      {/* <MenuSidebar /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/help" element={<HelpPage />} />
@@ -32,6 +32,7 @@ function App() {
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/sp/:productId" element={<Dynamic />} />
         <Route path="/account-settings" element={<AccountSettings user={currentUser} />} />
+        <Route path="/account-profile" element={<ProfilePage/>}/>
       </Routes>
       <Footer />
     </>

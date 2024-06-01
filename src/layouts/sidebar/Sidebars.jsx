@@ -1,14 +1,41 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
-import { Avatar } from "@mui/material";
+import { Avatar, Badge, Button, IconButton, Input  } from "@mui/material";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 export const Sidebars = ({ isLoggedIn, user }) => {
   return (
     <div className="sidebar">
-      <Link to='/'>
+      <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
+      <div className="Menusidebar">
+        <ul>
+          <li>
+            <Button variant="text">New & Featured</Button>
+          </li>
+          <li>
+            <Button variant="text">MEN</Button>
+          </li>
+          <li>
+            <Button variant="text">WOMEN</Button>
+          </li>
+          <li>
+            <Button variant="text">SALE</Button>
+          </li>
+          <Input placeholder="Search" />
+          <li>
+            <Link to="/store" className="nav-link">
+              <IconButton aria-label="cart">
+              <Badge badgeContent={0} showZero>
+                  <ShoppingBagOutlinedIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+          </li>
+        </ul>
+      </div>
       <ul>
         <li>
           <Link to="/" className="nav-link">

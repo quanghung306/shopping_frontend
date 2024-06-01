@@ -41,12 +41,13 @@ const Container = () => {
   }, []);
 
   return (
+      
     <div className="Container">
       {products.map((product) => (
         <div className="card" key={product.id}>
           <Link to={`/sp/${product.id}`}>
             <img
-              src={`data:image/jpeg;base64,${product.image}`}
+              src={`data:image/jpeg;base64,${product.base64Image}`}
               alt={product.title}
             />
           </Link>
@@ -62,12 +63,12 @@ const Container = () => {
                 currency: "VND",
                 minimumFractionDigits: 0,
               }).format(product.price)}
-              
             </p>
           </div>
         </div>
       ))}
     </div>
+  
   );
 };
 

@@ -10,12 +10,11 @@
     z-index: 9;
     background-color: #F5F5F5;
 }
-.sidebar a{
-    padding-left: 50px;
-} 
+
 
 .sidebar img {
-    width: 20%;
+    width: 120px;
+    margin-left: 50%;
 }
 
 .sidebar li {
@@ -26,11 +25,10 @@
 }
 
 .sidebar li a{
-    display: inline-block;
+    display: block;
     text-decoration: none;
     color: #111;
     font-size: 12px;
-    font-weight: 500;
     padding-left: 0px ;
 }
 
@@ -38,4 +36,15 @@
     padding: 0px 2px 0px 0px;
     margin: 0px 4px 0px 0px;
 
+}
+.sidebar Button{
+    color: black ;
+}
+.Menusidebar{
+    margin-left: 10%;
+}
+.Menusidebar li{
+    display: inline-block;
+    list-style: none;
+    padding: 0 20px;
 }
