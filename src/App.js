@@ -17,9 +17,9 @@ import ProfilePage from "./page/ProfilePage";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-
   return (
     <>
+   
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
       {/* <MenuSidebar /> */}
       <Routes>
