@@ -7,9 +7,11 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { addToCart } from "../stores/slice/cartSlice";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-const Dynamic = () => {
+const Dynamic = () => { // inforproducts
   const { productId } = useParams();
+
   const cart = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);

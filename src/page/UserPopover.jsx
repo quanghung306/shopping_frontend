@@ -12,13 +12,10 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [userEmail, setUserEmail] = React.useState('');
   const open = Boolean(anchorEl);
-  
-  // Hàm để lấy dữ liệu người dùng từ db.json
   const fetchUserData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/users');
@@ -30,7 +27,6 @@ export default function AccountMenu() {
       console.error('Error:', error);
     }
   };
-
   React.useEffect(() => {
     fetchUserData(); 
   }, []); 
