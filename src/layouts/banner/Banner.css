@@ -1,7 +1,14 @@
-.video-baner{
-    width:100%;
-    height: 100%;
+.video-banner {
+    width: 100%;
+    height: 100vh;
+
+    object-fit: cover;
+
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
+.video-banner video {
+    width: 100%;
+    height: 100%;
+  }

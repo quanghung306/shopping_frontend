@@ -1,12 +1,14 @@
 
 .storepage{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 40px;
+}
+.bag{
+    width: 100%;
 }
 
 .product-details{
-    display: flex;
     padding: 50px ;
 }
 .details{
