@@ -71,7 +71,8 @@ const StorePage = () => {
               </tr>
             </thead>
             <tbody>
-              {product && product.map((item) => (
+              {product &&
+                product.map((item) => (
                   <React.Fragment key={item.id}>
                     <tr>
                       <th>{item.image}</th>

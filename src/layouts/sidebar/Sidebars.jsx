@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
@@ -6,9 +5,6 @@ import { Avatar, Badge, Button, IconButton, Input  } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 export const Sidebars = ({ isLoggedIn, user }) => {
-=======
-import UserPopover from "../../page/UserPopover";
-const Sidebars = ({ isLoggedIn, user }) => {
   return (
     <div className="sidebar">
       <Link to="/">
@@ -59,9 +55,7 @@ const Sidebars = ({ isLoggedIn, user }) => {
         <li>
           {isLoggedIn && user ? (
             <Link to="/" className="nav-link">
-              {/* <span> Hi {user.LastName}</span>  */}
-              {/* <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar> */}
-              <UserPopover/>
+              <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>
             </Link>
           ) : (
             <Link to="/sign-in" className="nav-link">
