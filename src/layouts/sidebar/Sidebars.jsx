@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
 import UserPopover from "../../page/UserPopover";
-import { Avatar, Badge, Button, IconButton, Input  } from "@mui/material";
+import { Badge, Button, IconButton, Input  } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 export const Sidebars = ({ isLoggedIn, user }) => {

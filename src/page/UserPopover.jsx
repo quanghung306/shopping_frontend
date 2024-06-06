@@ -11,11 +11,13 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [userEmail, setUserEmail] = React.useState('');
   const open = Boolean(anchorEl);
+
   const fetchUserData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/users');
@@ -30,17 +32,17 @@ export default function AccountMenu() {
   React.useEffect(() => {
     fetchUserData(); 
   }, []); 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleLogout = () => {
+    localStorage.clear();  
+    window.location.href = '/sign-in'; 
+  };
   const avatarLetter = userEmail.charAt(0).toUpperCase(); 
-
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -107,13 +109,13 @@ export default function AccountMenu() {
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <Settings fontSize="small" />
+            <Settings fontSize="small" color='black' />
           </ListItemIcon>
-          <Link to="/account-settings" className="nav-link"  >
-          Settings
-            </Link>
+          <Link to="/account-settings" className="nav-link">
+            Settings
+          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
