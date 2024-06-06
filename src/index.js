@@ -7,7 +7,7 @@ import App from "./App";
 import productsReducer, { productsFetch } from "./stores/slice/productSlice";
 import cartReducer, { getTotals } from "./stores/slice/cartSlice";
 import { productsApi } from "./stores/slice/apiRequest";
-import CartProvider, { CartContext } from "./stores/slice/CartContext";
+import CartProvider from "./stores/slice/CartContext";
 
 const store = configureStore({
   reducer: {

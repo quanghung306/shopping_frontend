@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import {  useParams } from "react-router-dom";
 import "./Dynamic.css";
 import Rating from "@mui/material/Rating";
 import axios from "axios";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { addToCart } from "../stores/slice/cartSlice";
 import { Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-const Dynamic = () => { // inforproducts
+import { CartContext } from "../stores/slice/CartContext";
+
+const Dynamic = () => {
+  const { addToCart } = useContext(CartContext);
   const { productId } = useParams();
-
-  const cart = useSelector((state) => state.cart);
-
-  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,6 +29,10 @@ const Dynamic = () => { // inforproducts
 
     fetchProduct();
   }, [productId]);
+  
+  const handleAddToCart = () => {
+      addToCart(product[0]);
+  };
 
   return (
     <>
@@ -53,7 +51,7 @@ const Dynamic = () => { // inforproducts
                 <li>Colour Shown: White/Sail/Legend Pink</li>
                 <li>Style: FN5215-161</li>
               </ul>
-              <p >
+              <p>
                 {new Intl.NumberFormat("vi-VN", {
                   style: "currency",
                   currency: "VND",
