@@ -3,12 +3,14 @@ import Banner from "../layouts/banner/Banner";
 import Container from "../container/Container";
 import "./HomePage.css";
 import { Card } from "@mui/material";
+import Matching from "../layouts/banner/Matching";
 
 const HomePage = () => {
   return (
     <div className="homepage">
       <Banner />
-      <Card color="neutral" size="md" variant="outlined" sx={{ width: 320 }}>
+      <Matching/>
+      {/* <Card color="neutral" size="md" variant="outlined" sx={{ width: 320 }}>
         <div
           className="card"
           style={{
@@ -20,7 +22,7 @@ const HomePage = () => {
             <p>Perfect for everyone</p>
           </div>
         </div>
-      </Card>
+      </Card> */}
       <Container />
     </div>
   );

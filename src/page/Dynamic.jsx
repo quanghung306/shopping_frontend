@@ -17,7 +17,7 @@ const Dynamic = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/products/${productId}`
+          `http://localhost:5000/products/${productId}`
         );
         setProduct(response.data);
         setLoading(false);
