@@ -9,13 +9,11 @@ import { useHistory } from "react-router-dom";
 const Container = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
   const dispatch = useDispatch();
- 
-  
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    
-  }
-  
+  };
+
   return (
     <div className="Container">
       {isLoading ? (
