@@ -26,10 +26,10 @@ const AccountSettings = ({ user }) => {
         password,
       });
       if (response.status === 200) {
-        console.log('Account updated successfully');
+        alert('Account updated successfully');
         navigate('/');
       } else {
-        console.error('Failed to update account');
+        alert('Failed to update account');
       }
     } catch (error) {
       console.error('Error:', error);
