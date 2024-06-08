@@ -1,120 +1,98 @@
-// src/components/StorePage.js
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import "./StorePage.css";
-import { Button, Table } from "@mui/material";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import Button from "@mui/material/Button";
+import { addToCart, clearCart, decreaseCart, removeFromCart,getTotals } from "../stores/slice/cartSlice";
 
 const StorePage = () => {
-  const { productId } = useParams();
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const cart = useSelector((state) => state.cart);
+  const dispatch =useDispatch();
 
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/products/${productId}`
-        );
-        setProduct([response.data]);  
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [productId]);
-
-  const handleIncrement = (id) => {
-    setProduct((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const handleDecrement = (cartItem) => {
+    dispatch(decreaseCart(cartItem));
   };
 
-  const handleDecrement = (id) => {
-    setProduct((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  const handleIncrement = (cartItem) => {
+    dispatch(addToCart(cartItem));
   };
 
-  const handleRemove = (id) => {
-    setProduct((prevItems) => prevItems.filter((item) => item.id !== id));
+  const handleRemove = (cartItem) => {
+    dispatch(removeFromCart(cartItem));
   };
-
- 
-  if (loading) return <p>Loading...</p>;
-
+  const handleClear = (cartItem) => {
+    dispatch(clearCart(cartItem));
+  };
   return (
     <div className="storepage">
       <div className="bag">
         <h4>Bag</h4>
-        <div className="product-details">
-          <Table aria-label="basic table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th style={{ width: "30%" }}></th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {product &&
-                product.map((item) => (
-                  <tr key={item.id}>
-                    <th>
-                      <img src={item.image} alt={item.name} style={{ width: '50px' }} />
-                    </th>
-                    <th>{item.name}</th>
-                    <th>{item.size}</th>
-                    <th>
-                      <button onClick={() => handleDecrement(item.id)}>
-                        -
-                      </button>
-                      {item.quantity}
-                      <button onClick={() => handleIncrement(item.id)}>
-                        +
-                      </button>
-                    </th>
-                    <th>${(item.price * item.quantity).toFixed(2)}</th>
-                    <th>
-                      <button onClick={() => handleRemove(item.id)}>X</button>
-                    </th>
+        {cart.cartItems.length === 0 ? (
+          <div className="cart-empty">
+            <p>Your cart is currently empty</p>
+            <div className="start-shopping">
+              <Link to="/">
+              <ArrowLeftIcon />
+              <span>Start shopping</span>
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="product-details">
+            <table aria-label="basic table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Name</th>
+                  <th>Size</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.cartItems.map((cartItem) => (
+                  <tr key={cartItem.id}>
+                    <td>
+                      <img src={cartItem.image} alt={cartItem.title} style={{ width: '50px' }} />
+                    </td>
+                    <td>{cartItem.title}</td>
+                    <td>{cartItem.size}</td>
+                    <td>
+                      <button onClick={() => handleDecrement(cartItem.id)}>-</button>
+                      {cartItem.quantity}
+                      <button onClick={() => handleIncrement(cartItem.id)}>+</button>
+                    </td>
+                    <td>${(cartItem.price * cartItem.quantity).toFixed(2)}</td>
+                    <td>
+                      <button onClick={() => handleRemove(cartItem.id)}>X</button>
+                    </td>
                   </tr>
                 ))}
-            </tbody>
-          </Table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <div className="Summary">
         <h4>Summary</h4>
         <div className="Summary-item">
           <div className="item">
             <h6>Subtotal</h6>
-            <span>{product?.reduce((acc, item) => acc + item.price * item.quantity, 0)}₫</span>
+            <span>{cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}₫</span>
           </div>
           <div className="item">
             <h6>Estimated Delivery & Handling</h6>
-            <span>0₫</span>
+            <span></span>
           </div>
           <div className="item">
             <h6>Total</h6>
-            <span>{product ? product.reduce((acc, item) => acc + item.price * item.quantity, 0) + 250000 : 0}₫</span>
+            <span>{cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 250000}₫</span>
           </div>
-          <Button variant="contained" >
-          Checkout
-          </Button>
+          <Button variant="contained">Checkout</Button>
+          <ArrowLeftIcon />
+                <span>Start shopping</span>
         </div>
       </div>
     </div>

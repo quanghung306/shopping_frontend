@@ -4,7 +4,7 @@ import "./Dynamic.css";
 import Rating from "@mui/material/Rating";
 import axios from "axios";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { CartContext } from "../stores/slice/CartContext";
 
 const Dynamic = () => {
@@ -20,10 +20,10 @@ const Dynamic = () => {
           `http://localhost:3001/products/${productId}`
         );
         setProduct(response.data);
-        setLoading(false);
+        setLoading(<CircularProgress />);
       } catch (error) {
         console.error("Error fetching product:", error);
-        setLoading(false);
+        setLoading(<CircularProgress />);
       }
     };
 
@@ -37,7 +37,7 @@ const Dynamic = () => {
   return (
     <>
       {loading ? (
-        <div>Loading...</div>
+        <div></div>
       ) : (
         <div className="productid">
           <div className="img">
