@@ -4,10 +4,12 @@ import "./Sidebar.css";
 import UserPopover from "../../page/UserPopover";
 import { Badge, Button, IconButton, Input  } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-
+import {  useSelector } from "react-redux";
 export const Sidebars = ({ isLoggedIn, user }) => {
+  const {carTotalQuantity} =useSelector(state => state.cart) 
   return (
     <div className="sidebar">
+      
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
@@ -29,7 +31,7 @@ export const Sidebars = ({ isLoggedIn, user }) => {
           <li>
             <Link to="/store" className="nav-link">
               <IconButton aria-label="cart">
-              <Badge badgeContent={0} showZero>
+              <Badge badgeContent={carTotalQuantity} showZero>
                   <ShoppingBagOutlinedIcon />
                 </Badge>
               </IconButton>

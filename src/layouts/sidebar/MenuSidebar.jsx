@@ -14,7 +14,7 @@ const MenuSidebar = () => {
         <Input placeholder="Search" />
         <li>
           <Link to="/store" className="nav-link">
-        <Button  endIcon={<ShoppingBagOutlinedIcon />}> </Button>
+        <Button  endIcon={<ShoppingBagOutlinedIcon/>}> </Button>
         </Link>
           </li>
       </ul>
