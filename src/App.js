@@ -1,5 +1,5 @@
 import "./App.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 import Sidebars from "./layouts/sidebar/Sidebars";
 import HomePage from "./page/HomePage";
@@ -15,6 +15,7 @@ import { useState } from "react";
 import AccountSettings from "./page/AccountSettings";
 import ProfilePage from "./page/ProfilePage";
 import { ToastContainer } from "react-toastify";
+import ProductList from "./page/ProductList";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -46,6 +47,7 @@ function App() {
           element={<AccountSettings user={currentUser} />}
         />
         <Route path="/account-profile" element={<ProfilePage />} />
+        <Route path="/productlist" element={<ProductList />} />
       </Routes>
       <Footer />
     </>

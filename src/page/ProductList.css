@@ -1,0 +1,22 @@
+.productlist {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter {
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.filter li,button{
+    display: block;
+    list-style: none; 
+    background-color: white;
+    font-size: 21;
+    color: black ;
+    border: 0 white solid;
+}
+button:hover {
+    background-color: white;
+  }
