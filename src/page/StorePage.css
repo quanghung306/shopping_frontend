@@ -82,7 +82,6 @@
     font-weight: 700;
   }
   
-  /* cart summary */
   .cart-summary {
     display: flex;
     justify-content: space-between;

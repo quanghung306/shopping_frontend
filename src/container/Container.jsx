@@ -24,12 +24,12 @@ const Container = () => {
         <div className="product-list">
           {data?.map((product) => (
             <div key={product.id} className="product">
-              <h3>{product.title}</h3>
               <Link to={`/sp/${product.id}`}>
                 <img src={product.image} alt={product.title} />
               </Link>
+              <h5>{product.title}</h5>
               <div className="details">
-                <span>{product.description}</span>
+                <span>{product.type}</span>
                 <span className="price">
                   {new Intl.NumberFormat("vi-VN", {
                     style: "currency",
