@@ -1,4 +1,4 @@
-.productlist {
+.ProductList {
     display: flex;
     justify-content: space-evenly;
 }
@@ -9,14 +9,14 @@
     justify-content: space-evenly;
     
 }
-.filter li,button{
+.filter li {
     display: block;
     list-style: none; 
     background-color: white;
     font-size: 21;
-    color: black ;
     border: 0 white solid;
 }
-button:hover {
-    background-color: white;
-  }
+.filter button{
+    color: #111;
+    outline: none;
+}

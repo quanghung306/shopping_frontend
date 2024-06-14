@@ -1,6 +1,6 @@
-import { Card, Grid } from "@mui/material";
 import React from "react";
 import "./Menberbenefits.css";
+import { Button } from "@mui/material";
 
 const Menberbenefits = () => {
   return (
@@ -15,7 +15,6 @@ const Menberbenefits = () => {
               />
               <h2>Sport & Wellness Apps</h2>
               <p>Movement Where You're At</p>
-              <button>Move</button>
             </div>
             <div className="benefit-section">
               <img
@@ -24,7 +23,6 @@ const Menberbenefits = () => {
               />
               <h2>SNKRS</h2>
               <p>Your Ultimate Sneaker Community</p>
-              <button>Explore</button>
             </div>
             <div className="benefit-section">
               <img
@@ -33,7 +31,6 @@ const Menberbenefits = () => {
               />
               <h2>Member Product</h2>
               <p>Your Exclusive Access</p>
-              <button>Shop</button>
             </div>
           </div>
         

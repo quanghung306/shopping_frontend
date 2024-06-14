@@ -29,7 +29,7 @@ const Container = () => {
               </Link>
               <h5>{product.title}</h5>
               <div className="details">
-                <span>{product.type}</span>
+                <span>{product.gender}</span>
                 <span className="price">
                   {new Intl.NumberFormat("vi-VN", {
                     style: "currency",

@@ -40,7 +40,7 @@ const StorePage = () => {
         <div className="cart-empty">
           <p>Your cart is currently empty</p>
           <div className="start-shopping">
-            <Link to="/">
+            <Link to="/productlist">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -118,7 +118,7 @@ const StorePage = () => {
               <p>Taxes and shipping calculated at checkout</p>
               <button>Check out</button>
               <div className="continue-shopping">
-                <Link to="/">
+                <Link to="/productlist">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
