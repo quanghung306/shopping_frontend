@@ -1,10 +1,10 @@
 .menber {
-    align-items: center;
-    flex-direction: column;
     font-size: 24px;
     font-family: "Gill Sans", sans-serif;
     font-weight: bold;
-    margin-bottom: 200px;
+    line-height: 1.5;
+    margin-bottom: 100px;
+    padding: 8px 16px;
 }
 
 .member-benefits {
@@ -35,10 +35,5 @@
     margin-bottom: 1rem;
   }
   
-  .benefit-section button {
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
+  
+ 
