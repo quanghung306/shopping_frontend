@@ -7,7 +7,7 @@ import App from "./App";
 import productReducer, { productFetch } from "./stores/slice/productSlice";
 import cartReducer, { getTotals } from "./stores/slice/cartSlice";
 import { apiRequest } from "./stores/slice/apiRequest";
-import CartProvider from "./stores/slice/CartContext";
+
 
 
 const store = configureStore({
@@ -27,9 +27,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <CartProvider>
         <App />
-        </CartProvider>
       </Router>
     </Provider>
   </React.StrictMode>,
