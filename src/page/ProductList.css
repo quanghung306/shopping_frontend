@@ -1,0 +1,22 @@
+.ProductList {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter {
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.filter li {
+    display: block;
+    list-style: none; 
+    background-color: white;
+    font-size: 21;
+    border: 0 white solid;
+}
+.filter button{
+    color: #111;
+    outline: none;
+}

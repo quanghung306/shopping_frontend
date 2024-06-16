@@ -22,7 +22,6 @@ function App() {
   return (
     <>
       <ToastContainer />
-
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
       {/* <MenuSidebar /> */}
       <Routes>
@@ -49,6 +48,7 @@ function App() {
           />
           <Route path="/account-profile" element={<ProfilePage />} />
         </Route>
+
       </Routes>
 
       <Footer />

@@ -39,6 +39,9 @@ const Dynamic = () => {
       <div className="product-name">
         <h3>{product.title}</h3>
         <div className="noi dung san pham">
+          <span>{product.type}</span>
+          <br />
+          <br />
           <p>{product.description}</p>
           <p>
             {new Intl.NumberFormat("vi-VN", {

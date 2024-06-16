@@ -16,7 +16,9 @@ export const Sidebars = ({ isLoggedIn, user }) => {
       <div className="Menusidebar">
         <ul>
           <li>
+          <Link to="/productlist">
             <Button variant="text">New & Featured</Button>
+            </Link>
           </li>
           <li>
             <Button variant="text">MEN</Button>
@@ -44,7 +46,7 @@ export const Sidebars = ({ isLoggedIn, user }) => {
       <ul>
         <li>
           <Link to="/" className="nav-link">
-            Find a Store
+            Home
           </Link>
         </li>
         <li>

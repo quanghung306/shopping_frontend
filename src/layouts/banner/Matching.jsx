@@ -5,9 +5,9 @@ import "./Matching.css";
 const Matching = () => {
   return (
     <div className="matching">
-        <h1>Don't Miss</h1>
+      <h1>Don't Miss</h1>
       <div className="image">
-        <img src={ye} alt="quang cao do"  width={'100%'}/>
+        <img src={ye} alt="quang cao do" width={"100%"} />
       </div>
       <p>Best of Jordan</p>
       <h1>STAY FLY</h1>
