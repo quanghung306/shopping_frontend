@@ -6,13 +6,13 @@
     flex-direction: column;
     font-size: 24px;
     font-family: "Gill Sans", sans-serif;
-  font-weight: bold;
+    font-weight: bold;
+    margin-bottom: 200px;
 }
 .image{
     height: 70%;
 }
 h1{
-    
     font-size: 38px;
     line-height: 1.5;
     font-weight: bold;
