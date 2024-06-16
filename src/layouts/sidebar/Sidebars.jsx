@@ -31,8 +31,10 @@ export const Sidebars = ({ isLoggedIn, user }) => {
           <li>
             <Link to="/store" className="nav-link">
               <IconButton aria-label="cart">
-              <Badge badgeContent={carTotalQuantity} showZero>
-                  <ShoppingBagOutlinedIcon />
+              <Badge  >
+                  <ShoppingBagOutlinedIcon >
+                  {carTotalQuantity}
+                  </ShoppingBagOutlinedIcon>
                 </Badge>
               </IconButton>
             </Link>

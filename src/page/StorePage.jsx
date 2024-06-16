@@ -69,7 +69,7 @@ const StorePage = () => {
                     <div className="cart-product">
                       <img src={cartItem.image} alt={cartItem.name} />
                       <div>
-                        <h3>{cartItem.name}</h3>
+                        <h3>{cartItem.title}</h3>
                         <p>{cartItem.desc}</p>
                         <button onClick={() => handleRemove(cartItem)}>
                           Remove
