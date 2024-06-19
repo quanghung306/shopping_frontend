@@ -51,6 +51,7 @@ const ProductList = () => {
             <Button onClick={handleGenderChange} value={''}>
               All
             </Button>
+            
           </li>
           <li>
             <Button onClick={handleGenderChange} value={'Men'}>
@@ -70,6 +71,7 @@ const ProductList = () => {
             <div key={product.id}>{product.name}</div>
           ))}
         </Container>
+        
       </div>
     </div>
   );
