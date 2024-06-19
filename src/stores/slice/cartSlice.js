@@ -7,6 +7,7 @@ const initialState = {
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
+console.log("🚀 ~ initialState.cartItems:", initialState.cartItems)
 
 const cartSlice = createSlice({
   name: "cart",
@@ -32,6 +33,7 @@ const cartSlice = createSlice({
         });
       }
       localStorage.setItem("cartItems",JSON.stringify(state.cartItems))
+     
     },
     
     decreaseCart: (state, action) => {
@@ -54,6 +56,7 @@ const cartSlice = createSlice({
       });
       }
       localStorage.setItem("cartItems",JSON.stringify(state.cartItems))
+      
     },
     removeFromCart: (state, action) => {
       const nextCartItems = state.cartItems.filter(
@@ -71,6 +74,7 @@ const cartSlice = createSlice({
         position: "top-right",
       });
       localStorage.setItem("cartItems",JSON.stringify(state.cartItems))
+     
     },
     getTotals: (state,action) => {
       let { total, quantity } = state.cartItems.reduce(
