@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,58 +10,40 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { IconButton, InputAdornment } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../stores/slice/AuthSlice";
+
 const defaultTheme = createTheme();
+
 const SignUpPage = () => {
-  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
   const [checkEmail, setCheckEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email");
-    if (!isValidEmail(email)) {
-      setCheckEmail("Invalid email format. Please enter a valid email.");
-      return;
+  useEffect(() => {
+    if (auth._id) {
+      Navigate("/sign-in");
     }
+  }, [auth._id, Navigate]);
 
-    const user = {
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      email: email,
-      password: data.get("password"),
-    };
+  const [users, setUsers] = useState({
+    firstName: "",
+    LastName: "",
+    email: "",
+    password: "",
+  });
 
-    try {
-      const existingUsers = await axios.get(
-        `http://localhost:3001/users?email=${email}`
-      );
-      if (existingUsers.data.length > 0) {
-        setCheckEmail("Email already exists. Please use a different email.");
-      } else {
-        const response = await axios.post("http://localhost:3001/users", user);
-        if (response.status === 201) {
-          navigate("/sign-in");
-        } else {
-          setCheckEmail("Failed to register user. Please try again.");
-        }
-      }
-    } catch (error) {
-      setCheckEmail(`Error: ${error.message}`);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerUser(users));
   };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -78,8 +60,11 @@ const SignUpPage = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
+          {auth.registerStatus === "rejected" ? (
+            <p>{auth.registerError}</p>
+          ) : null}
           {checkEmail && (
             <Typography component="p" variant="body2" color="error">
               {checkEmail}
@@ -101,16 +86,22 @@ const SignUpPage = () => {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) =>
+                    setUsers({ ...users, firstName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="LastName"
                   label="Last Name"
-                  name="lastName"
+                  name="LastName"
                   autoComplete="family-name"
+                  onChange={(e) =>
+                    setUsers({ ...users, LastName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -121,6 +112,9 @@ const SignUpPage = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) =>
+                    setUsers({ ...users, email: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -132,6 +126,9 @@ const SignUpPage = () => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) =>
+                    setUsers({ ...users, password: e.target.value })
+                  }
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -157,8 +154,9 @@ const SignUpPage = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {auth.registerUser === "pending" ? "Submitting" : "Register"}
             </Button>
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <RouterLink to="/sign-in" variant="body2">

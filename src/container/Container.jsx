@@ -4,14 +4,16 @@ import { useGetAllProductsQuery } from "../stores/slice/apiRequest";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../stores/slice/cartSlice";
-import { useHistory } from "react-router-dom";
+
 
 const Container = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
   const dispatch = useDispatch();
+  // const navigate =useNavigate();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    // navigate("/store")
   };
 
   return (

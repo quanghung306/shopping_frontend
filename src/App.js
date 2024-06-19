@@ -22,7 +22,6 @@ function App() {
   return (
     <>
       <ToastContainer />
-
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
       {/* <MenuSidebar /> */}
       <Routes>

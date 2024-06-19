@@ -1,13 +1,13 @@
 import React from "react";
 import Banner from "../layouts/banner/Banner";
-import Container from "../container/Container";
 import "./HomePage.css";
-import { Card } from "@mui/material";
 import Matching from "../layouts/banner/Matching";
 import Menberbenefits from "../layouts/banner/Menberbenefits";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+  const {items: products,status}= useSelector((state)=>state.product);
   return (
     <div className="homepage">
       <Banner />
