@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "./Dynamic.css";
 import Rating from "@mui/material/Rating";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../stores/slice/cartSlice";
@@ -52,14 +52,16 @@ const Dynamic = () => {
           </p>
         </div>
         <div className="btmua">
+          <Rating name="customized-10" defaultValue={2} max={5} />
+          <br />
           <Button
             variant="contained"
-            endIcon={<ShoppingBagIcon />}
+            style={{backgroundColor: "black"}}
+            endIcon={<ShoppingBagOutlinedIcon />}
             onClick={() => handleAddToCart(product)}
           >
             Add to cart
           </Button>
-          <Rating name="customized-10" defaultValue={2} max={5} />
         </div>
       </div>
     </div>
