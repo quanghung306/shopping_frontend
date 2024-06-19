@@ -15,17 +15,15 @@ import { useState } from "react";
 import AccountSettings from "./page/AccountSettings";
 import ProfilePage from "./page/ProfilePage";
 import { ToastContainer } from "react-toastify";
-import PrivateRoutes from "./stores/slice/privateRoutes";
 import ProductList from "./page/ProductList";
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-
   return (
     <>
       <ToastContainer />
       <Sidebars isLoggedIn={isLoggedIn} user={currentUser} />
+      {/* <MenuSidebar /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/help" element={<HelpPage />} />
@@ -39,17 +37,15 @@ function App() {
             />
           }
         />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/sp/:productId" element={<Dynamic />} />
-        <Route path="*" element={<NotFoundPage />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/store" element={<StorePage />} />
-          <Route
-            path="/account-settings"
-            element={<AccountSettings user={currentUser} />}
-          />
-          <Route path="/account-profile" element={<ProfilePage />} />
-        </Route>
+        <Route
+          path="/account-settings"
+          element={<AccountSettings user={currentUser} />}
+        />
+        <Route path="/account-profile" element={<ProfilePage />} />
         <Route path="/productlist" element={<ProductList />} />
       </Routes>
       <Footer />

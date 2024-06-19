@@ -5,8 +5,10 @@ import UserPopover from "../../page/UserPopover";
 import { Badge, Button, IconButton, Input  } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import {  useSelector } from "react-redux";
-export const Sidebars = ({ isLoggedIn, user }) => {
+export const Sidebars = () => {
   const {carTotalQuantity} =useSelector(state => state.cart) 
+  const auth =useSelector(state => state.auth) 
+
   return (
     <div className="sidebar">
       
@@ -60,7 +62,7 @@ export const Sidebars = ({ isLoggedIn, user }) => {
           </Link>
         </li>
         <li>
-          {isLoggedIn && user ? (
+          {auth._id ? (
             <Link to="/" className="nav-link">
               <UserPopover/>
             </Link>
