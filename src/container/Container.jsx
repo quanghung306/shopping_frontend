@@ -7,7 +7,6 @@ import { addToCart } from "../stores/slice/cartSlice";
 
 
 const Container = () => {
-  
   const { data, error, isLoading } = useGetAllProductsQuery();
   const dispatch = useDispatch();
   // const navigate =useNavigate();
