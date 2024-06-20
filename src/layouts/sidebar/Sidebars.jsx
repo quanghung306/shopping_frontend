@@ -5,14 +5,10 @@ import UserPopover from "../../page/UserPopover";
 import { Badge, Button, IconButton, Input  } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {  useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getTotals } from "../../stores/slice/cartSlice";
+
 export const Sidebars = () => {
   const auth =useSelector(state => state.auth) 
-  const dispatch = useDispatch();
-  const {carTotalQuantity} =useSelector(state => state.cart) 
   const cartItems = useSelector(state => state.cart.cartItems)
-  console.log("🚀 ~ Sidebars ~ cartItems:", cartItems)
   
   const countTotal= cartItems.reduce((cartTotal, cartItem) => {
     const { price, cartQuantity } = cartItem;

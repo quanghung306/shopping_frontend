@@ -11,6 +11,7 @@ import {
   getTotals,
 } from "../stores/slice/cartSlice";
 import { Button } from "@mui/material";
+import PayButton from "./PayButton";
 const StorePage = () => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
@@ -122,7 +123,7 @@ const StorePage = () => {
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               {auth._id ? (
-                <button>Check out</button>
+                <PayButton cartItems ={cart.cartItems} />
               ) : (
                 <button
                   className="cart-login"
