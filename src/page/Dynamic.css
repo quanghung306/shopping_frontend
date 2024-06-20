@@ -1,17 +1,19 @@
 .productid {
     display: flex;
     justify-content: space-evenly;
+    height: 800px;
+    align-content: center;
+    padding-top: 3%;
 
 }
+
 .img {
-    display: block;
-    unicode-bidi: isolate;
-    width: 535px;
     max-width: 535px;
-    height: 669px;
 }
-
 
 .product-name {
     width: 456px;
+}
+button{
+    background-color: #111;
 }
