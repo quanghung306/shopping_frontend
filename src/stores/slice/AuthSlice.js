@@ -3,12 +3,14 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { url, setHeaders } from "./api";
 
+
 const initialState = {
   token: localStorage.getItem("token"),
   firstName: "",
   LastName: "",
   email: "",
   _id: "",
+  isAdmin:"",
   registerStatus: "",
   registerError: "",
   loginStatus: "",
@@ -94,6 +96,7 @@ const authSlice = createSlice({
           LastName: users.LastName,
           email: users.email,
           _id: users._id,
+          isAdmin:users.isAdmin,
           userLoaded: true,
         };
       } else {
@@ -125,6 +128,7 @@ const authSlice = createSlice({
             LastName: users.LastName,
             email: users.email,
             _id: users._id,
+            isAdmin:users.isAdmin,
             registerStatus: "success",
           };
         } else {
@@ -156,6 +160,7 @@ const authSlice = createSlice({
             LastName: users.LastName,
             email: users.email,
             _id: users._id,
+            isAdmin:users.isAdmin,
             loginStatus: "success",
           };
         } else {
@@ -190,6 +195,7 @@ const authSlice = createSlice({
             LastName: users.LastName,
             email: users.email,
             _id: users._id,
+            isAdmin:users.isAdmin,
             getUserStatus: "success",
           };
         } else {
