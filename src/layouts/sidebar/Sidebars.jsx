@@ -1,28 +1,27 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
-import { Badge, Button, IconButton, Input } from "@mui/material";
+import UserPopover from "../../page/UserPopover";
+import { Badge, Button, Hidden, IconButton, Input } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { useSelector, useDispatch } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../stores/slice/apiRequest";
-import { toast } from "react-toastify";
-import { logoutUser } from "../../stores/slice/AuthSlice"; 
-import UserPopover from "../../page/UserPopover";
-const Sidebars = () => {
-  const dispatch = useDispatch();
+
+export const Sidebars = () => {
   const auth = useSelector((state) => state.auth);
+  const { items: data, status } = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const { data } = useGetAllProductsQuery();
+  // const { data } = useGetAllProductsQuery();
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
+  //const response = []
+  //const searchValue = response.filter(res => res.title.toLowerCase().includes(searchValue.toLowerCase()))
   const handleSearch = (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredResults = data.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm)
+    const filteredResults = data.filter((items) =>
+      items.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setSearch(searchTerm);
+    setSearch(e.target.value);
     setFilteredData(filteredResults);
   };
 
@@ -61,17 +60,12 @@ const Sidebars = () => {
           <li>
             <Button variant="text">SALE</Button>
           </li>
-          <Input
-            placeholder="Search"
-            value={search}
-            onChange={handleSearch}
-            className="search-input"
-          />
+          <Input placeholder="Search" value={search} onChange={handleSearch} />
           {filteredData.length > 0 && filteredData.length < 20 ? (
-            <div className="search-results">
+            <div className="search">
               {filteredData.map((item) => (
-                <Link to={`/sp/${item.id}`} key={item.id}>
-                  <p>{item.title}</p>
+                <Link to={`/sp/${item.id}`}>
+                  <p key={item.id}>{item.title}</p>
                 </Link>
               ))}
             </div>
@@ -105,25 +99,9 @@ const Sidebars = () => {
         </li>
         <li>
           {auth._id ? (
-            <div className="nav-link">
-              {auth.isAdmin && (
-                <Link to="/admin/summary" className="nav-link">
-                  Admin
-                </Link>
-              )}
-              <Link to="/" className="nav-link">
-                <UserPopover />
-              </Link>
-              <div
-                onClick={() => {
-                  dispatch(logoutUser(null));
-                  toast.warning("Logged out!", { position: "bottom-left" });
-                }}
-                className="nav-link"
-              >
-                Logout
-              </div>
-            </div>
+            <Link to="/" className="nav-link">
+              <UserPopover />
+            </Link>
           ) : (
             <Link to="/sign-in" className="nav-link">
               Sign In

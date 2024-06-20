@@ -1,33 +1,30 @@
 import React from "react";
 import "./Container.css";
-import { useGetAllProductsQuery } from "../stores/slice/apiRequest";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../stores/slice/cartSlice";
 
-
 const Container = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery();
+  const { items: data, status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  // const navigate =useNavigate();
+  const navigate = useNavigate();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    // navigate("/store")
   };
 
   return (
     <div className="Container">
-      {isLoading ? (
+      {status === "loading" ? (
         <p>Loading...</p>
-      ) : error ? (
+      ) : status === "failed" ? (
         <p>An error occurred</p>
       ) : (
         <div className="product-list">
-          {data?.map((product) => (
-            <div key={product.id} className="product">
-              <Link to={`/sp/${product.id}`}>
-                <img src={product.image} alt={product.title} />
+          {data && data.map((product) => (
+            <div key={product._id} className="product">
+              <Link to={`/sp/${product._id}`}>
+                <img src={product.image?.url} alt={product.title} />
               </Link>
               <h5>{product.title}</h5>
               <div className="details">

@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
   const [users, setUsers] = useState({
     firstName: "",
-    LastName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -95,12 +95,12 @@ const SignUpPage = () => {
                 <TextField
                   required
                   fullWidth
-                  id="LastName"
+                  id="lastName"
                   label="Last Name"
-                  name="LastName"
+                  name="lastName"
                   autoComplete="family-name"
                   onChange={(e) =>
-                    setUsers({ ...users, LastName: e.target.value })
+                    setUsers({ ...users, lastName: e.target.value })
                   }
                 />
               </Grid>
