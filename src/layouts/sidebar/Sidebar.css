@@ -23,15 +23,15 @@
     display: inline-block;
     list-style: none;
     margin-right: 2px;
-    
+
 }
 
-.sidebar li a{
+.sidebar li a {
     display: block;
     text-decoration: none;
     color: #111;
     font-size: 12px;
-    padding-left: 0px ;
+    padding-left: 0px;
 }
 
 .sidebar ul {
@@ -39,14 +39,39 @@
     margin: 0px 4px 0px 0px;
 
 }
-.sidebar Button{
-    color: black ;
+
+.sidebar Button {
+    color: black;
 }
-.Menusidebar{
+
+.Menusidebar {
     margin-left: 10%;
 }
-.Menusidebar li{
+
+.Menusidebar li {
     display: inline-block;
     list-style: none;
     padding: 0 20px;
+}
+
+.search {
+    position: absolute;
+    background-color: #F5F5F5;
+    font-size: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px #F5F5F5;
+    border-radius: 10px;
+    margin: 1rem 0 0 30rem;
+    overflow-y: scroll;
+    max-height: 20vh;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: bold;
+    width: 19rem;
+}
+
+.search a {
+    text-decoration: none;
+    color: #111;
 }

@@ -2,37 +2,52 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/Glasgow.webp";
 import "./Sidebar.css";
 import UserPopover from "../../page/UserPopover";
-import { Badge, Button, IconButton, Input  } from "@mui/material";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {  useDispatch, useSelector } from "react-redux";
+import { Badge, Button, Hidden, IconButton, Input } from "@mui/material";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import {  useSelector } from "react-redux";
+import { useState } from "react";
+import { useGetAllProductsQuery } from "../../stores/slice/apiRequest";
 
 export const Sidebars = () => {
-  const auth =useSelector(state => state.auth) 
-  const cartItems = useSelector(state => state.cart.cartItems)
-  
-  const countTotal= cartItems.reduce((cartTotal, cartItem) => {
-    const { price, cartQuantity } = cartItem;
-    const itemTotal = price * cartQuantity;
-    cartTotal.total += itemTotal;
-    cartTotal.quantity += cartQuantity;
-    return cartTotal;
-  },
-  {
-    total: 0,
-    quantity: 0,
-  })
-  console.log("🚀 ~ countTotal ~ countTotal:", countTotal)
+  const auth = useSelector((state) => state.auth);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { data } = useGetAllProductsQuery();
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  //const response = []
+  //const searchValue = response.filter(res => res.title.toLowerCase().includes(searchValue.toLowerCase()))
+  const handleSearch = (e) => {
+    const filteredResults = data.filter((item) =>
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setSearch(e.target.value);
+    setFilteredData(filteredResults);
+  };
+
+  const countTotal = cartItems.reduce(
+    (cartTotal, cartItem) => {
+      const { price, cartQuantity } = cartItem;
+      const itemTotal = price * cartQuantity;
+      cartTotal.total += itemTotal;
+      cartTotal.quantity += cartQuantity;
+      return cartTotal;
+    },
+    {
+      total: 0,
+      quantity: 0,
+    }
+  );
+
   return (
     <div className="sidebar">
-      
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
       <div className="Menusidebar">
         <ul>
           <li>
-          <Link to="/productlist">
-            <Button variant="text">New & Featured</Button>
+            <Link to="/productlist">
+              <Button variant="text">New & Featured</Button>
             </Link>
           </li>
           <li>
@@ -44,12 +59,21 @@ export const Sidebars = () => {
           <li>
             <Button variant="text">SALE</Button>
           </li>
-          <Input placeholder="Search" />
+          <Input placeholder="Search" value={search} onChange={handleSearch} />
+          {filteredData.length > 0 && filteredData.length < 20 ? (
+            <div className="search">
+              {filteredData.map((item) => (
+                <Link to={`/sp/${item.id}`}>
+                  <p key={item.id}>{item.title}</p>
+                </Link>
+              ))}
+            </div>
+          ) : null}
           <li>
             <Link to="/store" className="nav-link">
               <IconButton aria-label="cart">
-              <Badge  badgeContent={countTotal.quantity}  color="primary">
-                  <ShoppingCartIcon color="action"/>
+                <Badge badgeContent={countTotal.quantity} color="primary">
+                  <ShoppingBagOutlinedIcon color="action" />
                 </Badge>
               </IconButton>
             </Link>
@@ -75,7 +99,7 @@ export const Sidebars = () => {
         <li>
           {auth._id ? (
             <Link to="/" className="nav-link">
-              <UserPopover/>
+              <UserPopover />
             </Link>
           ) : (
             <Link to="/sign-in" className="nav-link">
