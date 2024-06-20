@@ -154,3 +154,11 @@
     margin-bottom: 2rem;
   }
 }
+/* Admin */
+
+.link-active {
+  color: #4b70e2;
+}
+.link-inactive {
+  color: rgb(97, 97, 97);
+}
