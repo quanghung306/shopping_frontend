@@ -6,7 +6,7 @@ import { url, setHeaders } from "./api";
 const initialState = {
   token: localStorage.getItem("token"),
   firstName: "",
-  LastName: "",
+  lastName: "",
   email: "",
   _id: "",
   registerStatus: "",
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post(`${url}/register`, {
         firstName: users.firstName,
-        LastName: users.LastName,
+        lastName: users.lastName,
         email: users.email,
         password: users.password,
       });
@@ -91,7 +91,7 @@ const authSlice = createSlice({
           ...state,
           token,
           firstName: users.firstName,
-          LastName: users.LastName,
+          lastName: users.lastName,
           email: users.email,
           _id: users._id,
           userLoaded: true,
@@ -122,7 +122,7 @@ const authSlice = createSlice({
             ...state,
             token,
             firstName: users.firstName,
-            LastName: users.LastName,
+            lastName: users.lastName,
             email: users.email,
             _id: users._id,
             registerStatus: "success",
@@ -153,7 +153,7 @@ const authSlice = createSlice({
             ...state,
             token,
             firstName: users.firstName,
-            LastName: users.LastName,
+            lastName: users.lastName,
             email: users.email,
             _id: users._id,
             loginStatus: "success",
@@ -187,7 +187,7 @@ const authSlice = createSlice({
             ...state,
             token,
             firstName: users.firstName,
-            LastName: users.LastName,
+            lastName: users.lastName,
             email: users.email,
             _id: users._id,
             getUserStatus: "success",

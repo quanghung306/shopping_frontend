@@ -73,9 +73,9 @@ const StorePage = () => {
           <div className="cart-items">
             {cart.cartItems &&
               cart.cartItems.map((cartItem) => (
-                <div className="cart-item" key={cartItem.id}>
+                <li className="cart-item" key={cartItem.id}>
                   <div className="cart-product">
-                    <img src={cartItem.image} alt={cartItem.title} />
+                    <img src={cartItem.image?.url} alt={cartItem.title} />
                     <div>
                       <h3>{cartItem.title}</h3>
                       <p>{cartItem.desc}</p>
@@ -103,7 +103,7 @@ const StorePage = () => {
                       minimumFractionDigits: 0,
                     }).format(cartItem.price * cartItem.cartQuantity)}
                   </div>
-                </div>
+                </li>
               ))}
           </div>
           <div className="cart-summary">

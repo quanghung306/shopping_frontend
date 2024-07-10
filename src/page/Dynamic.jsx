@@ -4,29 +4,30 @@ import "./Dynamic.css";
 import Rating from "@mui/material/Rating";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../stores/slice/cartSlice";
-import { useGetAllProductsQuery } from "../stores/slice/apiRequest";
 
 const Dynamic = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const { data, error, isLoading } = useGetAllProductsQuery();
-
+  const { items: data, status } = useSelector((state) => state.products);
+  console.log("🚀 ~ Dynamic ~ status:", status)
+  
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
-
-  if (isLoading) {
+  
+  if (status === "loading") {
     return <p>Loading...</p>;
   }
-
-  if (error) {
+  
+  if (status === "failed") {
     return <p>An error occurred</p>;
   }
+  
+  const product = data?.find((products) => products._id === productId);
 
-  const product = data?.find((product) => product.id === productId);
-
+  
   if (!product) {
     return <p>Product not found</p>;
   }
@@ -34,12 +35,12 @@ const Dynamic = () => {
   return (
     <div className="productid">
       <div className="img">
-        <img src={product.image} alt={product.title} />
+        <img src={product.image?.url} alt={product.title} />
       </div>
       <div className="product-name">
         <h3>{product.title}</h3>
         <div className="noi dung san pham">
-          <span>{product.type}</span>
+          <span>{product.gender}</span>
           <br />
           <br />
           <p>{product.description}</p>

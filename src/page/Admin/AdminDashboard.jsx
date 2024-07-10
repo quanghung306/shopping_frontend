@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Outlet, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Dashboard = () => {
 //   const auth = useSelector((state) => state.auth);
@@ -86,4 +86,4 @@ const Content = styled.div`
   margin-left: 200px;
   padding: 2rem 3rem;
   width: 100%;
-`;
+`; 

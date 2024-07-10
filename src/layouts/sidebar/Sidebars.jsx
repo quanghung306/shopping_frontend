@@ -10,15 +10,16 @@ import { useGetAllProductsQuery } from "../../stores/slice/apiRequest";
 
 export const Sidebars = () => {
   const auth = useSelector((state) => state.auth);
+  const { items: data, status } = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const { data } = useGetAllProductsQuery();
+  // const { data } = useGetAllProductsQuery();
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   //const response = []
   //const searchValue = response.filter(res => res.title.toLowerCase().includes(searchValue.toLowerCase()))
   const handleSearch = (e) => {
-    const filteredResults = data.filter((item) =>
-      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    const filteredResults = data.filter((items) =>
+      items.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setSearch(e.target.value);
     setFilteredData(filteredResults);
