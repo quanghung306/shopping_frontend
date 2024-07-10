@@ -11,21 +11,23 @@ const Dynamic = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const { items: data, status } = useSelector((state) => state.products);
-
+  console.log("🚀 ~ Dynamic ~ status:", status)
+  
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
-
+  
   if (status === "loading") {
     return <p>Loading...</p>;
   }
-
+  
   if (status === "failed") {
     return <p>An error occurred</p>;
   }
+  
+  const product = data?.find((products) => products._id === productId);
 
-  const product = data?.find((product) => product._id === productId);
-
+  
   if (!product) {
     return <p>Product not found</p>;
   }
